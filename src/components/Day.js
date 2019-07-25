@@ -1,9 +1,11 @@
 import React from 'react'
 
-function Day(){
+const Day = () => {
   return(
     <div>
       {"day data here"}
     </div>
   )
 }
+
+export default Day

@@ -1,21 +1,22 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 import ForecastContainer from './containers/ForecastContainer'
 
-class App extends React.Component {
-  constructor(){
-    super()
-    this.state = {
-      allDays: []
-    }
-  }
+function App() {
+  const [allDays, setAlldays] = useState([])
 
-  componentDidMount(){
-    fetch(``)
-  }
+  // useEffect(() => {
+  //   fetch('url')
+  //       .then(response => response.json())
+  //       .then(obj => {
+            
+  //       });
+  // });
+
+  
 
   render(){
     return (

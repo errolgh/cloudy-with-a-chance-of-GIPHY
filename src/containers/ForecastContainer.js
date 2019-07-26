@@ -1,12 +1,10 @@
 import React from 'react'
-import Day from '../components/Day'
+import City from '../components/City'
 
 function ForecastContainer (){
   return (
-        <div className="ui card">
-          <Day/>
-          <Day/>
-          <Day/>
+        <div className="ui vertically divided padded grid"> 
+          <City/><City/><City/>
         </div>
   )
 }

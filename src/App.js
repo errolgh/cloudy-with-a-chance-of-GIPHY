@@ -18,7 +18,7 @@ class App extends React.Component {
 
 //hardcoded Moscow until we can make SearchBar and RESTClient functional...
   componentDidMount(){
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=ad60b93cfff576dcab5b6302b5148cd7`)
+    fetch(`api.openweathermap.org/data/2.5/forecast?zip=94040,usid=524901&APPID=524901&APPID=ad60b93cfff576dcab5b6302b5148cd7`)
     .then(res => res.json())
     .then((weatherArray) => {
       console.log(weatherArray.city)

@@ -11,7 +11,7 @@ class Day extends React.Component {
   render(){
     return(
       <div>
-        {"whatever"}
+        {"Day"}
       </div>
     )
   }

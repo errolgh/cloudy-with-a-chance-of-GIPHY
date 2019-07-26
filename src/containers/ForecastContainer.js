@@ -2,11 +2,14 @@ import React from 'react'
 import CityName from '../components/CityName'
 import DayContainer from './DayContainer'
 
-function ForecastContainer (){
+function ForecastContainer (props){
   return (
         <div>
           <CityName/>
-          <DayContainer/>
+          <DayContainer
+          allDays={props.allDays}
+          currentCity={props.currentCity}
+          />
         </div>
   )
 }

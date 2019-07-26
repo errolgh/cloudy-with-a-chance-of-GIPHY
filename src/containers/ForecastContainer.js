@@ -3,7 +3,7 @@ import Day from '../components/Day'
 
 function ForecastContainer (){
   return (
-        <div>
+        <div className="ui card">
           <Day/>
           <Day/>
           <Day/>

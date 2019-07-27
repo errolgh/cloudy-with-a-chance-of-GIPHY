@@ -11,13 +11,14 @@ class App extends React.Component {
     this.state = {
       allDays: [],
       currentCity: null,
+      
     }
   }
 
 
 //hardcoded Moscow until we can make SearchBar and RESTClient functional...
   componentDidMount(){
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=ad60b93cfff576dcab5b6302b5148cd7`)
+    fetch(`http://api.openweathermap.org/data/2.5/forecast?zip=90210,us&APPID=ad60b93cfff576dcab5b6302b5148cd7`)
     .then(res => res.json())
     .then((weatherArray) => {
 //creating weatherData for each city

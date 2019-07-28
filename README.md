@@ -70,3 +70,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 - Weather API Key: ad60b93cfff576dcab5b6302b5148cd7
 - GIPHY API Key: Ki8ew01YlH0AR1uWQTY2fytPe070tbIg
+
+- access to google fonts: https://www.w3schools.com/howto/howto_google_fonts.asp
+
+- changed component hierarchy, removed header, added nav

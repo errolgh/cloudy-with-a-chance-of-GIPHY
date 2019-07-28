@@ -29,19 +29,24 @@ class Day extends React.Component {
 
 
   render(){
+
+    let dt = new Date("December 25, 2019 23:15:00").getDay()
+
     return(
       <div className="ui column">
         <div className="ui card">
-          <div>
-            {"Dow"}
+          <div className="day-of-week">
+            {
+              dt
+            }
           </div>
-          <div>
+          <div className="temp">
             {this.props.dayData.maxTemp}°F
           </div>
           <div className="image">
             <img src={this.state.gif} alt={this.props.dayData.condition}/>
           </div>
-          <div>
+          <div className="temp">
             {this.props.dayData.condition}
           </div>
         </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 import ForecastContainer from './containers/ForecastContainer'
 import CityName from './components/CityName'
+import Nav from './components/Nav'
 
 class App extends React.Component {
   constructor(){
@@ -23,6 +23,10 @@ class App extends React.Component {
     .then(res => res.json())
     .then((weatherArray) => {
 //creating weatherData for each city
+
+      console.log("December 25, 2019 23:15:00")
+      console.log("")
+
       let cityName = weatherArray.city.name
 
       let weatherObjects = [
@@ -48,9 +52,9 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-      <Header/>
+      <Nav/>
+      <SearchBar/>
         <CityName currentCity={this.state.currentCity}/>
-        <SearchBar/>
         <ForecastContainer
           allDays={this.state.allDays}
           currentCity={this.state.currentCity}

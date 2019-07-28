@@ -3,12 +3,27 @@ import React from 'react'
 class Day extends React.Component {
   constructor(props){
     super(props)
+      this.state = {
+        gif: null,
+      }
+  }
+
+  condition = () => {
+    return this.props.dayData.condition
   }
 
   componentDidMount(){
-    fetch(`http://api.giphy.com/v1/gifs/search?q=cloudy&api_key=Ki8ew01YlH0AR1uWQTY2fytPe070tbIg&limit=1`)
+    fetch(`http://api.giphy.com/v1/gifs/search?q=${this.condition()}&api_key=Ki8ew01YlH0AR1uWQTY2fytPe070tbIg&limit=10`)
     .then(res => res.json())
-    .then(skyObj => console.log("from day component ", skyObj))
+    .then(skyObj => {
+      console.log(skyObj.data[Math.round(Math.random(skyObj.data.length))].images.downsized_large.url)
+
+      let randomizer = skyObj.data[Math.round(Math.random(skyObj.data.length))].images.downsized_large.url
+
+      this.setState({
+        gif: randomizer
+      })
+    })
   }
 
 
@@ -20,13 +35,13 @@ class Day extends React.Component {
             {"Dow"}
           </div>
           <div>
-            {this.props.dayObj.maxTemp}
+            {this.props.dayData.maxTemp}°F
+          </div>
+          <div className="image">
+            <img src={this.state.gif} alt={this.props.dayData.condition}/>
           </div>
           <div>
-            {"SkyCondition"}
-          </div>
-          <div>
-            {this.props.dayObj.condition}
+            {this.props.dayData.condition}
           </div>
         </div>
       </div>

@@ -1,12 +1,15 @@
 import React from 'react'
 import Day from '../containers/Day'
 
-function DayContainer(){
+function DayContainer(props){
+  console.log(props)
   return (
     <div>
-      <Day/>
-      <Day/>
-      <Day/>
+      {
+        props.allDays.map(day => {
+          return <Day dayObj={day}/>
+        })
+      }
     </div>
   )
 }

@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
 import ForecastContainer from './containers/ForecastContainer'
+import CityName from './components/CityName'
 
 class App extends React.Component {
   constructor(){
@@ -17,29 +18,28 @@ class App extends React.Component {
 
 //hardcoded Moscow until we can make SearchBar and RESTClient functional...
   componentDidMount(){
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=ad60b93cfff576dcab5b6302b5148cd7`)
+    fetch(`http://api.openweathermap.org/data/2.5/forecast?zip=90210&APPID=ad60b93cfff576dcab5b6302b5148cd7`)
     .then(res => res.json())
     .then((weatherArray) => {
 //creating weatherData for each city
       let cityName = weatherArray.city.name
-      let cityCode = weatherArray.city.id
-      let cityObject = {name: cityName, code: cityCode}
 
-      let weatherObject = [
-       {day1: {condition: weatherArray.list[0].weather[0].description, minTemp: Math.round((weatherArray.list[0].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[0].main.temp_max - 273.15)*1.8 + 32)}},
+      let weatherObjects = [
+       {condition: weatherArray.list[0].weather[0].description, minTemp: Math.round((weatherArray.list[0].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[0].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[0].dt_txt},
 
-       {day2: {condition: weatherArray.list[8].weather[0].description, minTemp: Math.round((weatherArray.list[8].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[8].main.temp_max - 273.15)*1.8 + 32)}},
+       {condition: weatherArray.list[8].weather[0].description, minTemp: Math.round((weatherArray.list[8].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[8].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[8].dt_txt},
 
-       {day3: {condition: weatherArray.list[16].weather[0].description, minTemp: Math.round((weatherArray.list[16].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[16].main.temp_max - 273.15)*1.8 + 32)}},
+       {condition: weatherArray.list[16].weather[0].description, minTemp: Math.round((weatherArray.list[16].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[16].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[16].dt_txt},
 
-       {day4: {condition: weatherArray.list[24].weather[0].description, minTemp: Math.round((weatherArray.list[24].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[24].main.temp_max - 273.15)*1.8 + 32)}},
+       {condition: weatherArray.list[24].weather[0].description, minTemp: Math.round((weatherArray.list[24].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[24].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[24].dt_txt},
 
-       {day5: {condition: weatherArray.list[30].weather[0].description, minTemp: Math.round((weatherArray.list[30].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[30].main.temp_max - 273.15)*1.8 + 32)}}
+       {condition: weatherArray.list[32].weather[0].description, minTemp: Math.round((weatherArray.list[32].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[32].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[32].dt_txt}
       ]
-      console.log(weatherArray)
+      console.log("original weatherArray: ", weatherArray)
+      console.log("weatherObject: ", weatherObjects)
       this.setState({
-        allDays: weatherObject,
-        currentCity: cityObject
+        allDays: weatherObjects,
+        currentCity: cityName,
       })
     })
   }
@@ -48,6 +48,7 @@ class App extends React.Component {
     return (
       <div>
         <Header/>
+        <CityName currentCity={this.state.currentCity}/>
         <SearchBar/>
         <ForecastContainer
           allDays={this.state.allDays}

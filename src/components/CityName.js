@@ -1,9 +1,9 @@
 import React from 'react'
 
-function CityName (){
+function CityName (props){
   return (
         <div>
-          {}
+          {props.currentCity}
         </div>
   )
 }

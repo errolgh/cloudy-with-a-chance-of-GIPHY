@@ -3,7 +3,6 @@ import React from 'react'
 class Day extends React.Component {
   constructor(props){
     super(props)
-    console.log(this.props)
   }
 
   componentDidMount(){
@@ -15,8 +14,21 @@ class Day extends React.Component {
 
   render(){
     return(
-      <div className="ui">
-      {"nah kid"}
+      <div className="ui column">
+        <div className="ui card">
+          <div>
+            {"Dow"}
+          </div>
+          <div>
+            {this.props.dayObj.maxTemp}
+          </div>
+          <div>
+            {"SkyCondition"}
+          </div>
+          <div>
+            {this.props.dayObj.condition}
+          </div>
+        </div>
       </div>
     )
   }

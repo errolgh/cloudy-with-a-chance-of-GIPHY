@@ -12,13 +12,14 @@ class App extends React.Component {
     this.state = {
       allDays: [],
       currentCity: null,
+      searchZipCode: "20005",
     }
   }
 
 
 //hardcoded Moscow until we can make SearchBar and RESTClient functional...
   componentDidMount(){
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?zip=90210&APPID=ad60b93cfff576dcab5b6302b5148cd7`)
+    fetch(`http://api.openweathermap.org/data/2.5/forecast?zip=${this.state.searchZipCode}&APPID=ad60b93cfff576dcab5b6302b5148cd7`)
     .then(res => res.json())
     .then((weatherArray) => {
 //creating weatherData for each city
@@ -35,8 +36,8 @@ class App extends React.Component {
 
        {condition: weatherArray.list[32].weather[0].description, minTemp: Math.round((weatherArray.list[32].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[32].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[32].dt_txt}
       ]
-      console.log("original weatherArray: ", weatherArray)
-      console.log("weatherObject: ", weatherObjects)
+      // console.log("original weatherArray: ", weatherArray)
+      // console.log("weatherObject: ", weatherObjects)
       this.setState({
         allDays: weatherObjects,
         currentCity: cityName,

@@ -2,7 +2,7 @@ import React from 'react'
 import Day from '../containers/Day'
 
 function DayContainer(props){
-  console.log(props)
+  // console.log(props)
   return (
     <div className="ui five column grid">
       <div className= "row">

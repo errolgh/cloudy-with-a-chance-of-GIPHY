@@ -27,7 +27,9 @@ class Day extends React.Component {
 
   render(){
     return(
+      
       <div className="ui card">
+        
         <div className="content">
           <div className="header">
            {this.props.dayData.condition}
@@ -44,6 +46,7 @@ class Day extends React.Component {
           <div className="header"> weather condition</div>
         </div> */}
       </div>
+     
     )
   }
 }

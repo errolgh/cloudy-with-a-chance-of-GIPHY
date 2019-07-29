@@ -3,7 +3,9 @@ import React from 'react'
 const SearchBar = (props) => {
   return (
     <div>
-      <form>
+      <form
+        onSubmit={(event) => {props.handleSubmitOfSearch(event)}}
+      >
         <div className="search-element ui search">
           <div className="ui icon input">
             <input
@@ -15,7 +17,10 @@ const SearchBar = (props) => {
             />
           </div>
           <span>
-            <button type="submit" className="medium circular ui green button">
+            <button
+              type="submit"
+              className="medium circular ui green button"
+            >
               Search
             </button>
           </span>

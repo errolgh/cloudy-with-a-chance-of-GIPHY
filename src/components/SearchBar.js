@@ -11,11 +11,11 @@ const SearchBar = (props) => {
               type="text"
               placeholder="Enter A Zip Code"
               value={null}
-              onSubmit={() => {props.handleChangeSearchText()}}
+              onChange={(event) => {props.handleChangeSearchText(event)}}
             />
           </div>
           <span>
-            <button className="medium circular ui green button">
+            <button type="submit" className="medium circular ui green button">
               Search
             </button>
           </span>

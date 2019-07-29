@@ -1,13 +1,10 @@
 import React from 'react'
-import City from '../components/City'
+import DayContainer from './DayContainer'
 
 function ForecastContainer (props){
   return (
-        <div className="ui vertically divided padded grid"> 
-          <City
-          allDays={props.allDays}
-          currentCity={props.currentCity}
-          />
+        <div>
+          <DayContainer allDays={props.allDays}/>
         </div>
   )
 }

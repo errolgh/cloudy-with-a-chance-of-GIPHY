@@ -1,16 +1,32 @@
 import React from 'react'
 
-function SearchBar(){
+const SearchBar = (props) => {
   return (
-    <div className="ui inverted segment">
-      <div className="ui inverted massive form">
-        <div className=" 12 wide field">
-          <label>Search By Zipcode
-            <input></input>
-          </label>
-          <input className="ui submit button inverted olive massive " type="submit" value="Submit" />
+    <div>
+      <form
+      onSubmit={(event)=>props.handleSubmitOfSearch(event)}
+      >
+        <div className="search-element ui search">
+          <div className="ui icon input">
+            <input
+              className="prompt"
+              type="text"
+              placeholder="Enter A Zip Code"
+              value={null}
+              onChange={(event)=>{props.handleChangeSearchText(event)}}
+              
+            />
+          </div>
+          <span>
+            <button 
+            type = "submit"
+            
+            className="medium circular ui green button">
+              Search
+            </button>
+          </span>
         </div>
-      </div>
+      </form>
     </div>
   )
 }

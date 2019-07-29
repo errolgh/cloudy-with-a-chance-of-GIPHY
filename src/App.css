@@ -37,7 +37,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #CC3366;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -49,6 +49,46 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.nav-title {
+  font-size: 2.5em;
+  font-family: Aclonica;
+  text-align: center;
+  padding-top: 20px;
+  margin-left: 420px;
+  padding-bottom: 20px;
+}
+
+
+.city-name {
+  font-size: 4.5em;
+  font-family: Aclonica;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.day-of-week {
+  font-size: 2.5em;
+  font-family: Verdana;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.temp {
+  font-size: 1.4em;
+  font-family: Verdana;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.search-element {
+  font-size: 1.2em;
+  padding-top: 20px;
+}
+
+.insta-grey {
+  background-color: rgb(245, 245, 245);
 }
 
 @keyframes App-logo-spin {

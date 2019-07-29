@@ -70,17 +70,25 @@ class App extends React.Component {
     })
   }
 
-  // handleChangeSearchText(){
-  //   this.setState({
-  //     searchText: null
-  //   })
-  // }
+  handleChangeSearchText = (event) => {
+    event.persist()
+    this.setState({
+      searchText: event.target.value
+    })
+    fetch(`http://api.openweathermap.org/data/2.5/forecast?zip=${this.state.searchText},us&APPID=ad60b93cfff576dcab5b6302b5148cd7`)
+    .then(res => res.json())
+    .then((weatherArray) => {
+      console.log(weatherArray)
+  }
 
   render(){
     return (
       <div className="App">
         <Nav/>
-        <SearchBar/>
+        <SearchBar
+          handleChangeSearchText={this.handleChangeSearchText}
+          searchText={this.state.searchText}
+        />
         <CityName currentCity={this.state.currentCity}/>
         <ForecastContainer
           allDays={this.state.allDays}

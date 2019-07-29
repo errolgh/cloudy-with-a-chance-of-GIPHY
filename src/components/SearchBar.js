@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   return (
     <div>
       <form>
@@ -11,7 +11,7 @@ const SearchBar = () => {
               type="text"
               placeholder="Enter A Zip Code"
               value={null}
-              // onSubmit={handleChangeSearchText}
+              onSubmit={() => {props.handleChangeSearchText()}}
             />
           </div>
           <span>

@@ -13,7 +13,7 @@ class Day extends React.Component {
   }
 
   componentDidMount(){
-    fetch(`http://api.giphy.com/v1/gifs/search?q=${this.condition()}&api_key=Ki8ew01YlH0AR1uWQTY2fytPe070tbIg&limit=20`)
+    fetch(`http://api.giphy.com/v1/gifs/search?q=${this.condition()}&api_key=Ki8ew01YlH0AR1uWQTY2fytPe070tbIg&limit=15`)
     .then(res => res.json())
     .then(skyObj => {
 console.log(skyObj)

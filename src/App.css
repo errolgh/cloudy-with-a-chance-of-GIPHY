@@ -59,6 +59,9 @@
   padding-top: 20px;
 }
 
+.insta-grey {
+  background-color: rgb(245, 245, 245);
+}
 
 @keyframes App-logo-spin {
   from {

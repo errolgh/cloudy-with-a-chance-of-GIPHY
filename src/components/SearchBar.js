@@ -1,16 +1,26 @@
 import React from 'react'
 
-function SearchBar(){
+const SearchBar = () => {
   return (
     <div>
-      <div className="search-element ui search">
-        <div className="ui icon input">
-          <input className="prompt"type="text"placeholder="Enter A Zip Code"/>
+      <form>
+        <div className="search-element ui search">
+          <div className="ui icon input">
+            <input
+              className="prompt"
+              type="text"
+              placeholder="Enter A Zip Code"
+              value={null}
+              // onSubmit={handleChangeSearchText}
+            />
+          </div>
+          <span>
+            <button className="medium circular ui green button">
+              Search
+            </button>
+          </span>
         </div>
-        <span>
-          <button className="medium circular ui blue button">Search</button>
-        </span>
-      </div>
+      </form>
     </div>
   )
 }

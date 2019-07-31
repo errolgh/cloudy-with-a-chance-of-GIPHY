@@ -8,7 +8,7 @@ function DayContainer(props){
       <div className= "row">
         {
           props.allDays.map(day => {
-            return <Day dayData={day}/>
+            return <Day handleClick={props.handleClick} dayData={day}/>
           })
         }
       </div>

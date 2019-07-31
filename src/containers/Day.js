@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 class Day extends React.Component {
   constructor(props){
@@ -11,6 +12,9 @@ class Day extends React.Component {
   condition = () => {
     return this.props.dayData.condition
   }
+
+
+  
 
   componentDidMount(){
     fetch(`http://api.giphy.com/v1/gifs/search?q=${this.condition()}&api_key=Ki8ew01YlH0AR1uWQTY2fytPe070tbIg&limit=20`)
@@ -33,7 +37,7 @@ console.log(skyObj)
   render(){
     return(
       <div className="ui column">
-        <div className="ui card">
+        <div className="ui card" >
           <div className="day-of-week">
             {this.props.dayData.dayOfWeek.slice(0, 3)}
           </div>
@@ -46,6 +50,9 @@ console.log(skyObj)
           <div className="temp">
             {this.props.dayData.condition}
           </div>
+          <Link to={`/forecasts/${this.props.dayData.id-1}`}>
+             <button data-day-id={this.props.dayData.id} onClick={(event)=>this.props.handleClick(this.props.dayData)}>More Info</button>
+          </Link>
         </div>
       </div>
     )

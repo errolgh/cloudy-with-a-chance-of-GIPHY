@@ -16,13 +16,11 @@ class Day extends React.Component {
     fetch(`http://api.giphy.com/v1/gifs/search?q=${this.condition()}&api_key=Ki8ew01YlH0AR1uWQTY2fytPe070tbIg&limit=15`)
     .then(res => res.json())
     .then(skyObj => {
-// console.log("a single sky object: ", skyObj)
       let gifArray = skyObj.data.map((gif) => {
         return gif.images.downsized_large.url
       })
 
       let randomGif = Math.round(Math.random()*skyObj.data.length)
-      // console.log(randomGif)
       this.setState({
         gif: gifArray[randomGif]
       })

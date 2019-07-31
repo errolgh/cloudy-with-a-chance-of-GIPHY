@@ -13,7 +13,7 @@ class App extends React.Component {
       allDays: [],
       currentCity: null,
       searchText: "90210",
-      currentZip: "90210"
+      currentZip: "90210",
     }
   }
 
@@ -123,19 +123,11 @@ console.log("modified day object: ", dayObjectsArray)
     })
   }
 
+  // getGifStateFromDay = (data) => {
+  //
+  // }
+
   saveForecast = (event) => {
-    // console.log("saving forecast")
-    // console.log("sky condition: ", this.state.allDays[0].condition)
-    // console.log("date_range: ", this.state.allDays[0].date)
-    // console.log("dayOfWeek: ", this.state.allDays[0].dayOfWeek)
-    // console.log("humidity: ", this.state.allDays[0].humidity)
-    // console.log("minimum temperature: ", this.state.allDays[0].minTemp)
-    // console.log("maximum temperature: ", this.state.allDays[0].maxTemp)
-    // console.log("daysArray: ", this.state.allDays)
-    // console.log("city: ", this.state.currentCity)
-    // console.log(`${this.state.allDays[0].date} - ${this.state.allDays[4].date}`)
-    // console.log("current zip: ", this.state.currentZip)
-// debugger
     event.preventDefault()
     fetch('http://localhost:3001/forecasts', {
       method: "POST",
@@ -152,7 +144,7 @@ console.log("modified day object: ", dayObjectsArray)
             humidity: this.state.allDays[0].humidity,
             min_temp: this.state.allDays[0].minTemp,
             max_temp: this.state.allDays[0].maxTemp,
-            url: this.state.allDays[0]
+            url: this.state.gif
           },
           {
             condition: this.state.allDays[1].condition,
@@ -161,7 +153,7 @@ console.log("modified day object: ", dayObjectsArray)
             humidity: this.state.allDays[1].humidity,
             min_temp: this.state.allDays[1].minTemp,
             max_temp: this.state.allDays[1].maxTemp,
-            url: this.state
+            url: this.state.gif
           },
           {
             condition: this.state.allDays[2].condition,
@@ -170,7 +162,7 @@ console.log("modified day object: ", dayObjectsArray)
             humidity: this.state.allDays[2].humidity,
             min_temp: this.state.allDays[2].minTemp,
             max_temp: this.state.allDays[2].maxTemp,
-            url: this.state.allDays[2]
+            url: this.state.gif
           },
           {
             condition: this.state.allDays[3].condition,
@@ -179,7 +171,7 @@ console.log("modified day object: ", dayObjectsArray)
             humidity: this.state.allDays[3].humidity,
             min_temp: this.state.allDays[3].minTemp,
             max_temp: this.state.allDays[3].maxTemp,
-            url: this.state.allDays[3]
+            url: this.state.gif
           },
           {
             condition: this.state.allDays[4].condition,
@@ -188,7 +180,7 @@ console.log("modified day object: ", dayObjectsArray)
             humidity: this.state.allDays[4].humidity,
             min_temp: this.state.allDays[4].minTemp,
             max_temp: this.state.allDays[4].maxTemp,
-            url: this.state.allDays[4]
+            url: this.state.gif
           },
         ],
         city_name: this.state.currentCity,

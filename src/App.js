@@ -196,10 +196,36 @@ console.log("modified day array: ", dayObjectsArray)
     })
   }
 
+  profilePage = () => {
+    console.log("hey dude")
+    fetch(`http://localhost:3001/forecasts`)
+    .then(res => res.json())
+    .then(forecastArray => {
+      this.setState({
+        allDays: [],
+        currentCity: null,
+        searchText: "90210",
+        currentZip: "90210",
+        selectedDay: {},
+      })
+    })
+  }
+
+  homeSelect = () => {
+    console.log("im in here")
+    fetch(`http://localhost:3000`)
+    .then(res => res.json())
+    .then(dayArray => console.log(dayArray))
+  }
+
   render(){
     return (
       <div className="App">
-        <Nav saveForecast={this.saveForecast}/>
+        <Nav
+          saveForecast={this.saveForecast}
+          profilePage={this.profilePage}
+          homeSelect={this.homeSelect}
+        />
         <SearchBar
           handleSubmitOfSearch={this.handleSubmitOfSearch}
           handleChangeSearchText={this.handleChangeSearchText}

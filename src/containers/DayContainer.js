@@ -27,8 +27,8 @@ function DayContainer(props){
   }
 
   return (
-    <div className="ui five column grid">
-      <div className= "row">
+    <div className="ui five column grid col-height">
+      <div className= "row card-container">
         {
           props.selectedDay.id ? generateCard() : generateDays()
         }

@@ -30,7 +30,7 @@ class Day extends React.Component {
   render(){
     return(
       <div className="ui column">
-        <div className="ui card" onClick={
+        <div className="ui card white" onClick={
           () => {
             this.props.selectedDay.id ? this.props.clickHandler({})
             : this.props.clickHandler(this.props.dayData)}

@@ -4,7 +4,9 @@ export default class Nav extends React.Component {
   render(){
     return(
       <div className="ui small inverted menu blue">
-        <div className="item">
+        <div className="item"
+          onClick={(event)=>{this.props.homeSelect(event)}}
+        >
           <div className="ui vertical animated button blue" tabIndex="0">
             <div className="hidden content">
               ^_^
@@ -29,7 +31,9 @@ export default class Nav extends React.Component {
               </div>
             </div>
           </div>
-          <div className="item">
+          <div className="item"
+            onClick={(event)=>{this.props.profilePage(event)}}
+          >
             <div className="ui vertical animated button blue" tabIndex="0">
               <div className="hidden content">
                 Profile

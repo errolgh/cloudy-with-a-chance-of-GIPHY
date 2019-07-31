@@ -41,7 +41,10 @@ class Day extends React.Component {
             {this.props.dayData.maxTemp}°F
           </div>
           <div className="image">
-            <img src={this.state.gif} alt={this.props.dayData.condition}/>
+            <img
+              src={this.state.gif || 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'}
+              alt={this.props.dayData.condition}
+            />
           </div>
           <div className="temp">
             {this.props.dayData.condition}

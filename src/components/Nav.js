@@ -1,9 +1,6 @@
 import React from 'react'
 
 export default class Nav extends React.Component {
-  constructor(props){
-    super(props)
-  }
   render(){
     return(
       <div className="ui small inverted menu blue">
@@ -21,7 +18,7 @@ export default class Nav extends React.Component {
           Cloudy with a Chance of GIPHY
         </span>
         <div className="right menu">
-          <div className="item" onClick={()=>{this.props.saveForecast()}}>
+          <div className="item" onClick={(event)=>{this.props.saveForecast(event)}}>
             <div className="ui vertical animated button blue" tabIndex="0">
               <div className="hidden content">
                 Save

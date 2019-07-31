@@ -12,7 +12,6 @@ const SearchBar = (props) => {
               className="prompt"
               type="text"
               placeholder="Enter A Zip Code"
-              value={null}
               onChange={(event) => {props.handleChangeSearchText(event)}}
             />
           </div>

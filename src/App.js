@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import SearchBar from './components/SearchBar'
 import ForecastContainer from './containers/ForecastContainer'
@@ -13,11 +13,8 @@ class App extends React.Component {
       allDays: [],
       currentCity: null,
       searchText: "90210",
+      currentZip: "90210"
     }
-  }
-
-  saveForecast = () => {
-    console.log("saving forecast")
   }
 
   componentDidMount(){
@@ -25,7 +22,7 @@ class App extends React.Component {
     .then(res => res.json())
     .then((weatherArray) => {
 //creating custom weatherData for each city
-  console.log(weatherArray)
+  console.log("original weatherArray: ",weatherArray)
       let monthArray = [
       "January", "February", "March", "April", "May", "June", "July",
             "August", "September", "October", "November", "December"
@@ -41,7 +38,7 @@ class App extends React.Component {
         "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"
       ]
 
-      let currentDayOfWeek = weekArray[dayOfWeekNum]
+      // let currentDayOfWeek = weekArray[dayOfWeekNum]
 
       let dynamicWeekDayArray = [
         weekArray[dayOfWeekNum],
@@ -53,7 +50,7 @@ class App extends React.Component {
 
       let cityName = weatherArray.city.name
 
-      let weatherObjects = [
+      let dayObjectsArray = [
        {id: 1, condition: weatherArray.list[0].weather[0].description, minTemp: Math.round((weatherArray.list[0].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[0].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[0].dt_txt, dayOfWeek: dynamicWeekDayArray[0], humidity: weatherArray.list[0].main.humidity},
 
        {id: 2, condition: weatherArray.list[8].weather[0].description, minTemp: Math.round((weatherArray.list[8].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[8].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[8].dt_txt, dayOfWeek: dynamicWeekDayArray[1], humidity: weatherArray.list[8].main.humidity},
@@ -64,9 +61,9 @@ class App extends React.Component {
 
        {id: 5, condition: weatherArray.list[32].weather[0].description, minTemp: Math.round((weatherArray.list[32].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[32].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[32].dt_txt, dayOfWeek: dynamicWeekDayArray[4], humidity: weatherArray.list[32].main.humidity}
       ]
-
+console.log("modified day object: ", dayObjectsArray)
       this.setState({
-        allDays: weatherObjects,
+        allDays: dayObjectsArray,
         currentCity: cityName,
       })
     })
@@ -85,7 +82,7 @@ class App extends React.Component {
     .then(res => res.json())
     .then((weatherArray) => {
 //creating custom weatherData for each city
-  console.log(weatherArray)
+  // console.log(weatherArray)
       let monthArray = [
       "January", "February", "March", "April", "May", "June", "July",
             "August", "September", "October", "November", "December"
@@ -101,7 +98,7 @@ class App extends React.Component {
         "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"
       ]
 
-      let currentDayOfWeek = weekArray[dayOfWeekNum]
+      // let currentDayOfWeek = weekArray[dayOfWeekNum]
 
       let dynamicWeekDayArray = [
         weekArray[dayOfWeekNum],
@@ -113,7 +110,7 @@ class App extends React.Component {
 
       let cityName = weatherArray.city.name
 
-      let weatherObjects = [
+      let dayObjectsArray = [
        {id: 1, condition: weatherArray.list[0].weather[0].description, minTemp: Math.round((weatherArray.list[0].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[0].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[0].dt_txt, dayOfWeek: dynamicWeekDayArray[0], humidity: weatherArray.list[0].main.humidity},
 
        {id: 2, condition: weatherArray.list[8].weather[0].description, minTemp: Math.round((weatherArray.list[8].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[8].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[8].dt_txt, dayOfWeek: dynamicWeekDayArray[1], humidity: weatherArray.list[8].main.humidity},
@@ -126,15 +123,85 @@ class App extends React.Component {
       ]
 
       this.setState({
-        allDays: weatherObjects,
+        allDays: dayObjectsArray,
         currentCity: cityName,
+        currentZip: this.state.searchText
       })
     })
   }
 
-  saveForecast = () => {
-    
+  saveForecast = (event) => {
+    console.log("saving forecast")
+    console.log("sky condition: ", this.state.allDays[0].condition)
+    console.log("date: ", this.state.allDays[0].date)
+    console.log("dayOfWeek: ", this.state.allDays[0].dayOfWeek)
+    console.log("humidity: ", this.state.allDays[0].humidity)
+    console.log("minimum temperature: ", this.state.allDays[0].minTemp)
+    console.log("maximum temperature: ", this.state.allDays[0].maxTemp)
+    console.log("daysArray: ", this.state.allDays)
+    console.log("city: ", this.state.currentCity)
+    console.log(`${this.state.allDays[0].date} - ${this.state.allDays[4].date}`)
+// debugger
+    event.preventDefault()
+    fetch('http://localhost:3000/forecasts',{
+      method:"POST",
+      headers: {"Content-type":"application/json"},
+      body: JSON.stringify({
+        days: [
+          {
+            condition: this.state.allDays[0].condition,
+            date: this.state.allDays[0].date,
+            day_of_week: this.state.allDays[0].dayOfWeek,
+            humidity: this.state.allDays[0].humidity,
+            min_temp: this.state.allDays[0].minTemp,
+            max_temp: this.state.allDays[0].maxTemp,
+          },
+          {
+            condition: this.state.allDays[1].condition,
+            date: this.state.allDays[1].date,
+            day_of_week: this.state.allDays[1].dayOfWeek,
+            humidity: this.state.allDays[1].humidity,
+            min_temp: this.state.allDays[1].minTemp,
+            max_temp: this.state.allDays[1].maxTemp,
+          },
+          {
+            condition: this.state.allDays[2].condition,
+            date: this.state.allDays[2].date,
+            day_of_week: this.state.allDays[2].dayOfWeek,
+            humidity: this.state.allDays[2].humidity,
+            min_temp: this.state.allDays[2].minTemp,
+            max_temp: this.state.allDays[2].maxTemp,
+          },
+          {
+            condition: this.state.allDays[3].condition,
+            date: this.state.allDays[3].date,
+            day_of_week: this.state.allDays[3].dayOfWeek,
+            humidity: this.state.allDays[3].humidity,
+            min_temp: this.state.allDays[3].minTemp,
+            max_temp: this.state.allDays[3].maxTemp,
+          },
+          {
+            condition: this.state.allDays[4].condition,
+            date: this.state.allDays[4].date,
+            day_of_week: this.state.allDays[4].dayOfWeek,
+            humidity: this.state.allDays[4].humidity,
+            min_temp: this.state.allDays[4].minTemp,
+            max_temp: this.state.allDays[4].maxTemp,
+          },
+        ],
+        city: this.state.currentCity,
+        date: `${this.state.allDays[0].date} - ${this.state.allDays[4].date}`
+      })
+    })//make a POST fetch call
+    .then(res => res.json())
+    .then(newForecast => {
+      console.log("newForecast ", newForecast)
+      // this.setState({
+      //   taskList: [...this.state.taskList, newForecast]
+      // })
+    })
   }
+
 
   render(){
     return (
@@ -159,3 +226,28 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+/*
+
+//when user submits new forcast
+  onAddNewTask = (event) => {
+    event.preventDefault()
+    fetch('http://localhost:3000/tasks',{
+      method:"POST",
+      headers: {"Content-type":"application/json"},
+      body: JSON.stringify({
+        text: this.state.formText,
+        done: false
+      })
+    })//make a POST fetch call
+    .then(res => res.json())
+    .then(newForecast => {
+      console.log(newForecast)
+      this.setState({
+        taskList: [...this.state.taskList, newForecast]
+      })
+    })
+  }
+
+*/

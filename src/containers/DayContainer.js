@@ -8,7 +8,10 @@ function DayContainer(props){
       <div className= "row">
         {
           props.allDays.map(day => {
-            return <Day dayData={day}/>
+            return <Day
+                      dayData={day}
+                      key={day.id}
+                    />
           })
         }
       </div>

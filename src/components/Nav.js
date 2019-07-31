@@ -18,7 +18,8 @@ export default class Nav extends React.Component {
           Cloudy with a Chance of GIPHY
         </span>
         <div className="right menu">
-          <div className="item" onClick={(event)=>{this.props.saveForecast(event)}}>
+          <div className="item"       onClick={(event)=>{this.props.saveForecast(event)}}
+          >
             <div className="ui vertical animated button blue" tabIndex="0">
               <div className="hidden content">
                 Save

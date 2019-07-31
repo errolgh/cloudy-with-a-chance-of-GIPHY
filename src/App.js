@@ -122,55 +122,57 @@ console.log("modified day array: ", dayObjectsArray)
     fetch('http://localhost:3001/forecasts', {
       method: "POST",
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
         "Accept": "application/json"
       },
       body: JSON.stringify({
-        days: [
-          {
-            condition: this.state.allDays[0].condition,
-            date: this.state.allDays[0].date,
-            day_of_week: this.state.allDays[0].dayOfWeek,
-            humidity: this.state.allDays[0].humidity,
-            min_temp: this.state.allDays[0].minTemp,
-            max_temp: this.state.allDays[0].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
-          },
-          {
-            condition: this.state.allDays[1].condition,
-            date: this.state.allDays[1].date,
-            day_of_week: this.state.allDays[1].dayOfWeek,
-            humidity: this.state.allDays[1].humidity,
-            min_temp: this.state.allDays[1].minTemp,
-            max_temp: this.state.allDays[1].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
-          },
-          {
-            condition: this.state.allDays[2].condition,
-            date: this.state.allDays[2].date,
-            day_of_week: this.state.allDays[2].dayOfWeek,
-            humidity: this.state.allDays[2].humidity,
-            min_temp: this.state.allDays[2].minTemp,
-            max_temp: this.state.allDays[2].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
-          },
-          {
-            condition: this.state.allDays[3].condition,
-            date: this.state.allDays[3].date,
-            day_of_week: this.state.allDays[3].dayOfWeek,
-            humidity: this.state.allDays[3].humidity,
-            min_temp: this.state.allDays[3].minTemp,
-            max_temp: this.state.allDays[3].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
-          },
-          {
-            condition: this.state.allDays[4].condition,
-            date: this.state.allDays[4].date,
-            day_of_week: this.state.allDays[4].dayOfWeek,
-            humidity: this.state.allDays[4].humidity,
-            min_temp: this.state.allDays[4].minTemp,
-            max_temp: this.state.allDays[4].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
-          },
-        ],
-        city_name: this.state.currentCity,
-        date_range: `${this.state.allDays[0].date} - ${this.state.allDays[4].date}`,
-        zip_code: this.state.currentZip
+        forecast: {
+          days: [
+            {
+              condition: this.state.allDays[0].condition,
+              date: this.state.allDays[0].date,
+              day_of_week: this.state.allDays[0].dayOfWeek,
+              humidity: this.state.allDays[0].humidity,
+              min_temp: this.state.allDays[0].minTemp,
+              max_temp: this.state.allDays[0].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
+            },
+            {
+              condition: this.state.allDays[1].condition,
+              date: this.state.allDays[1].date,
+              day_of_week: this.state.allDays[1].dayOfWeek,
+              humidity: this.state.allDays[1].humidity,
+              min_temp: this.state.allDays[1].minTemp,
+              max_temp: this.state.allDays[1].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
+            },
+            {
+              condition: this.state.allDays[2].condition,
+              date: this.state.allDays[2].date,
+              day_of_week: this.state.allDays[2].dayOfWeek,
+              humidity: this.state.allDays[2].humidity,
+              min_temp: this.state.allDays[2].minTemp,
+              max_temp: this.state.allDays[2].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
+            },
+            {
+              condition: this.state.allDays[3].condition,
+              date: this.state.allDays[3].date,
+              day_of_week: this.state.allDays[3].dayOfWeek,
+              humidity: this.state.allDays[3].humidity,
+              min_temp: this.state.allDays[3].minTemp,
+              max_temp: this.state.allDays[3].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
+            },
+            {
+              condition: this.state.allDays[4].condition,
+              date: this.state.allDays[4].date,
+              day_of_week: this.state.allDays[4].dayOfWeek,
+              humidity: this.state.allDays[4].humidity,
+              min_temp: this.state.allDays[4].minTemp,
+              max_temp: this.state.allDays[4].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
+            },
+          ],
+          city_name: this.state.currentCity,
+          date_range: `${this.state.allDays[0].date} - ${this.state.allDays[4].date}`,
+          zip_code: this.state.currentZip
+        }
       })
     })
     .then(res => res.json())

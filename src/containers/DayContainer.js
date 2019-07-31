@@ -26,10 +26,6 @@ function DayContainer(props){
     />
   }
 
-  const clearDay = () => {
-    return generateDays()
-  }
-
   return (
     <div className="ui five column grid">
       <div className= "row">

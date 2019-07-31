@@ -4,7 +4,11 @@ import DayContainer from './DayContainer'
 function ForecastContainer (props){
   return (
         <div>
-          <DayContainer allDays={props.allDays}/>
+          <DayContainer
+            allDays={props.allDays}
+            cardView={props.cardView}
+            selectedDay={props.selectedDay}
+          />
         </div>
   )
 }

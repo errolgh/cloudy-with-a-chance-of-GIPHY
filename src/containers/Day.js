@@ -19,10 +19,9 @@ class Day extends React.Component {
       let gifArray = skyObj.data.map((gif) => {
         return gif.images.downsized_large.url
       })
-
-      let randomGif = Math.round(Math.random()*skyObj.data.length)
+      let chosenGif = gifArray[Math.round(Math.random()*skyObj.data.length)]
       this.setState({
-        gif: gifArray[randomGif]
+        gif: chosenGif
       })
     })
   }
@@ -31,7 +30,11 @@ class Day extends React.Component {
   render(){
     return(
       <div className="ui column">
-        <div className="ui card">
+        <div className="ui card" onClick={
+          () => {
+            this.props.selectedDay.id ? this.props.clickHandler({})
+            : this.props.clickHandler(this.props.dayData)}
+        }>
           <div className="day-of-week">
             {this.props.dayData.dayOfWeek.slice(0, 3)}
           </div>

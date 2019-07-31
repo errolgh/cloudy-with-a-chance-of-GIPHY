@@ -14,6 +14,7 @@ class App extends React.Component {
       currentCity: null,
       searchText: "90210",
       currentZip: "90210",
+      selectedDay: {},
     }
   }
 
@@ -58,18 +59,11 @@ class App extends React.Component {
 
        {id: 5, condition: weatherArray.list[32].weather[0].description, minTemp: Math.round((weatherArray.list[32].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[32].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[32].dt_txt, dayOfWeek: dynamicWeekDayArray[4], humidity: weatherArray.list[32].main.humidity}
       ]
-console.log("modified day object: ", dayObjectsArray)
+console.log("modified day array: ", dayObjectsArray)
       this.setState({
         allDays: dayObjectsArray,
         currentCity: cityName,
       })
-    })
-  }
-
-  handleChangeSearchText = (event) => {
-    event.persist()
-    this.setState({
-      searchText: event.target.value
     })
   }
 
@@ -123,10 +117,6 @@ console.log("modified day object: ", dayObjectsArray)
     })
   }
 
-  // getGifStateFromDay = (data) => {
-  //
-  // }
-
   saveForecast = (event) => {
     event.preventDefault()
     fetch('http://localhost:3001/forecasts', {
@@ -143,8 +133,7 @@ console.log("modified day object: ", dayObjectsArray)
             day_of_week: this.state.allDays[0].dayOfWeek,
             humidity: this.state.allDays[0].humidity,
             min_temp: this.state.allDays[0].minTemp,
-            max_temp: this.state.allDays[0].maxTemp,
-            url: this.state.gif
+            max_temp: this.state.allDays[0].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
           },
           {
             condition: this.state.allDays[1].condition,
@@ -152,8 +141,7 @@ console.log("modified day object: ", dayObjectsArray)
             day_of_week: this.state.allDays[1].dayOfWeek,
             humidity: this.state.allDays[1].humidity,
             min_temp: this.state.allDays[1].minTemp,
-            max_temp: this.state.allDays[1].maxTemp,
-            url: this.state.gif
+            max_temp: this.state.allDays[1].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
           },
           {
             condition: this.state.allDays[2].condition,
@@ -161,8 +149,7 @@ console.log("modified day object: ", dayObjectsArray)
             day_of_week: this.state.allDays[2].dayOfWeek,
             humidity: this.state.allDays[2].humidity,
             min_temp: this.state.allDays[2].minTemp,
-            max_temp: this.state.allDays[2].maxTemp,
-            url: this.state.gif
+            max_temp: this.state.allDays[2].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
           },
           {
             condition: this.state.allDays[3].condition,
@@ -170,8 +157,7 @@ console.log("modified day object: ", dayObjectsArray)
             day_of_week: this.state.allDays[3].dayOfWeek,
             humidity: this.state.allDays[3].humidity,
             min_temp: this.state.allDays[3].minTemp,
-            max_temp: this.state.allDays[3].maxTemp,
-            url: this.state.gif
+            max_temp: this.state.allDays[3].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
           },
           {
             condition: this.state.allDays[4].condition,
@@ -179,8 +165,7 @@ console.log("modified day object: ", dayObjectsArray)
             day_of_week: this.state.allDays[4].dayOfWeek,
             humidity: this.state.allDays[4].humidity,
             min_temp: this.state.allDays[4].minTemp,
-            max_temp: this.state.allDays[4].maxTemp,
-            url: this.state.gif
+            max_temp: this.state.allDays[4].maxTemp, url: 'https://media.giphy.com/media/fMvvwdTWamlA4/giphy.gif'
           },
         ],
         city_name: this.state.currentCity,
@@ -195,13 +180,24 @@ console.log("modified day object: ", dayObjectsArray)
     })
   }
 
+  handleChangeSearchText = (event) => {
+    event.persist()
+    this.setState({
+      searchText: event.target.value
+    })
+  }
+
+  cardView = (day) => {
+    console.log("showing card ", day)
+    this.setState({
+      selectedDay: day
+    })
+  }
 
   render(){
     return (
       <div className="App">
-        <Nav
-          saveForecast={this.saveForecast}
-        />
+        <Nav saveForecast={this.saveForecast}/>
         <SearchBar
           handleSubmitOfSearch={this.handleSubmitOfSearch}
           handleChangeSearchText={this.handleChangeSearchText}
@@ -211,6 +207,8 @@ console.log("modified day object: ", dayObjectsArray)
         <ForecastContainer
           allDays={this.state.allDays}
           currentCity={this.state.currentCity}
+          cardView={this.cardView}
+          selectedDay={this.state.selectedDay}
         />
       </div>
     );

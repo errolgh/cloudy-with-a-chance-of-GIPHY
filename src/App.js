@@ -70,15 +70,15 @@ class App extends React.Component {
       let cityName = weatherObject.city.name
 
       let weatherObjects = [
-       {id: 1, condition: weatherObject.list[0].weather[0].description, city: cityName, minTemp: Math.round((weatherObject.list[0].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherObject.list[0].main.temp_max - 273.15)*1.8 + 32), date: weatherObject.list[0].dt_txt, dayOfWeek: dynamicWeekDayArray[0]},
+       {id: `${this.state.searchText}1`, condition: weatherObject.list[0].weather[0].description, city: cityName, minTemp: Math.round((weatherObject.list[0].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherObject.list[0].main.temp_max - 273.15)*1.8 + 32), date: weatherObject.list[0].dt_txt, dayOfWeek: dynamicWeekDayArray[0]},
 
-       {id: 2, condition: weatherObject.list[8].weather[0].description, city: cityName, minTemp: Math.round((weatherObject.list[8].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherObject.list[8].main.temp_max - 273.15)*1.8 + 32), date: weatherObject.list[8].dt_txt, dayOfWeek: dynamicWeekDayArray[1]},
+       {id: `${this.state.searchText}2`, condition: weatherObject.list[8].weather[0].description, city: cityName, minTemp: Math.round((weatherObject.list[8].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherObject.list[8].main.temp_max - 273.15)*1.8 + 32), date: weatherObject.list[8].dt_txt, dayOfWeek: dynamicWeekDayArray[1]},
 
-       {id: 3, condition: weatherObject.list[16].weather[0].description, city: cityName, minTemp: Math.round((weatherObject.list[16].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherObject.list[16].main.temp_max - 273.15)*1.8 + 32), date: weatherObject.list[16].dt_txt, dayOfWeek: dynamicWeekDayArray[2]},
+       {id: `${this.state.searchText}3`, condition: weatherObject.list[16].weather[0].description, city: cityName, minTemp: Math.round((weatherObject.list[16].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherObject.list[16].main.temp_max - 273.15)*1.8 + 32), date: weatherObject.list[16].dt_txt, dayOfWeek: dynamicWeekDayArray[2]},
 
-       {id: 4, condition: weatherObject.list[24].weather[0].description, city: cityName, minTemp: Math.round((weatherObject.list[24].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherObject.list[24].main.temp_max - 273.15)*1.8 + 32), date: weatherObject.list[24].dt_txt, dayOfWeek: dynamicWeekDayArray[3]},
+       {id: `${this.state.searchText}4`, condition: weatherObject.list[24].weather[0].description, city: cityName, minTemp: Math.round((weatherObject.list[24].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherObject.list[24].main.temp_max - 273.15)*1.8 + 32), date: weatherObject.list[24].dt_txt, dayOfWeek: dynamicWeekDayArray[3]},
 
-       {id: 5, condition: weatherObject.list[32].weather[0].description, city: cityName, minTemp: Math.round((weatherObject.list[32].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherObject.list[32].main.temp_max - 273.15)*1.8 + 32), date: weatherObject.list[32].dt_txt, dayOfWeek: dynamicWeekDayArray[4]}
+       {id: `${this.state.searchText}5`, condition: weatherObject.list[32].weather[0].description, city: cityName, minTemp: Math.round((weatherObject.list[32].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherObject.list[32].main.temp_max - 273.15)*1.8 + 32), date: weatherObject.list[32].dt_txt, dayOfWeek: dynamicWeekDayArray[4]}
       ]
 
       this.setState({
@@ -179,10 +179,11 @@ class App extends React.Component {
           />
           }/>
 
-            <Route exact  path='/forecast/:id' render={(props)=>{
+            <Route exact  path='/forecasts/:id' render={(props)=>{
 
               ////figuring out why no props are being passed
-            console.log(props)
+            
+           
              return <DayDetailsContainer alldays={this.state.allDays} day={this.state.selectedDay}/>}} />
           
              

@@ -26,6 +26,21 @@ class Day extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState){
+    if (prevProps.dayData !== this.props.dayData){
+    fetch(`http://api.giphy.com/v1/gifs/search?q=${this.condition()}&api_key=Ki8ew01YlH0AR1uWQTY2fytPe070tbIg&limit=15`)
+    .then(res => res.json())
+    .then(skyObj => {
+      let gifArray = skyObj.data.map((gif) => {
+        return gif.images.downsized_large.url
+      })
+      let chosenGif = gifArray[Math.round(Math.random()*skyObj.data.length)]
+      this.setState({
+        gif: chosenGif
+      })
+    })}
+  }
+
 
   render(){
     return(
@@ -47,7 +62,7 @@ class Day extends React.Component {
               alt={this.props.dayData.condition}
             />
           </div>
-          <div className="temp">
+          <div onChange={this.handleChange} className="temp">
             {this.props.dayData.condition}
           </div>
         </div>

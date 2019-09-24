@@ -5,6 +5,9 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-mapbox-gl": "^4.6.0",
+    "react-router": "^5.1.0",
+    "react-router-dom": "^5.1.0",
     "react-scripts": "3.0.1",
     "semantic-ui": "^2.4.2"
   },

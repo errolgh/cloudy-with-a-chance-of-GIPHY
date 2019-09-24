@@ -36,7 +36,7 @@ export default class Nav extends React.Component {
           >
             <div className="ui vertical animated button blue" tabIndex="0">
               <div className="hidden content">
-                Profile
+                Login
               </div>
               <div className="visible content">
                 <i className="user icon"></i>

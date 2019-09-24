@@ -5,6 +5,9 @@ import SearchBar from './components/SearchBar'
 import ForecastContainer from './containers/ForecastContainer'
 import CityName from './components/CityName'
 import Nav from './components/Nav'
+import { Route, Switch, Link, Redirect} from 'react-router-dom'
+import { withRouter } from 'react-router'
+import Home from './routes/Home'
 
 class App extends React.Component {
   constructor(){
@@ -49,15 +52,55 @@ class App extends React.Component {
       let cityName = weatherArray.city.name
 
       let dayObjectsArray = [
-       {id: 1, condition: weatherArray.list[0].weather[0].description, minTemp: Math.round((weatherArray.list[0].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[0].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[0].dt_txt, dayOfWeek: dynamicWeekDayArray[0], humidity: weatherArray.list[0].main.humidity},
+       {
+         id: 1,
+          condition: weatherArray.list[0].weather[0].description,
+          minTemp: Math.round((weatherArray.list[0].main.temp_min - 273.15)*1.8 + 32),
+          maxTemp: Math.round((weatherArray.list[0].main.temp_max - 273.15)*1.8 + 32),
+          date: weatherArray.list[0].dt_txt,
+          dayOfWeek: dynamicWeekDayArray[0],
+          humidity: weatherArray.list[0].main.humidity
+        },
 
-       {id: 2, condition: weatherArray.list[8].weather[0].description, minTemp: Math.round((weatherArray.list[8].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[8].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[8].dt_txt, dayOfWeek: dynamicWeekDayArray[1], humidity: weatherArray.list[8].main.humidity},
+       {
+         id: 2,
+          condition: weatherArray.list[8].weather[0].description,
+          minTemp: Math.round((weatherArray.list[8].main.temp_min - 273.15)*1.8 + 32),
+          maxTemp: Math.round((weatherArray.list[8].main.temp_max - 273.15)*1.8 + 32),
+          date: weatherArray.list[8].dt_txt,
+          dayOfWeek: dynamicWeekDayArray[1],
+          humidity: weatherArray.list[8].main.humidity
+        },
 
-       {id: 3, condition: weatherArray.list[16].weather[0].description, minTemp: Math.round((weatherArray.list[16].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[16].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[16].dt_txt, dayOfWeek: dynamicWeekDayArray[2], humidity: weatherArray.list[16].main.humidity},
+       {
+         id: 3,
+          condition: weatherArray.list[16].weather[0].description,
+          minTemp: Math.round((weatherArray.list[16].main.temp_min - 273.15)*1.8 + 32),
+          maxTemp: Math.round((weatherArray.list[16].main.temp_max - 273.15)*1.8 + 32),
+          date: weatherArray.list[16].dt_txt,
+          dayOfWeek: dynamicWeekDayArray[2],
+          humidity: weatherArray.list[16].main.humidity
+        },
 
-       {id: 4, condition: weatherArray.list[24].weather[0].description, minTemp: Math.round((weatherArray.list[24].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[24].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[24].dt_txt, dayOfWeek: dynamicWeekDayArray[3], humidity: weatherArray.list[24].main.humidity},
+       {
+         id: 4,
+          condition: weatherArray.list[24].weather[0].description,
+          minTemp: Math.round((weatherArray.list[24].main.temp_min - 273.15)*1.8 + 32),
+          maxTemp: Math.round((weatherArray.list[24].main.temp_max - 273.15)*1.8 + 32),
+          date: weatherArray.list[24].dt_txt,
+          dayOfWeek: dynamicWeekDayArray[3],
+          humidity: weatherArray.list[24].main.humidity
+        },
 
-       {id: 5, condition: weatherArray.list[32].weather[0].description, minTemp: Math.round((weatherArray.list[32].main.temp_min - 273.15)*1.8 + 32), maxTemp: Math.round((weatherArray.list[32].main.temp_max - 273.15)*1.8 + 32), date: weatherArray.list[32].dt_txt, dayOfWeek: dynamicWeekDayArray[4], humidity: weatherArray.list[32].main.humidity}
+       {
+         id: 5,
+          condition: weatherArray.list[32].weather[0].description,
+          minTemp: Math.round((weatherArray.list[32].main.temp_min - 273.15)*1.8 + 32),
+          maxTemp: Math.round((weatherArray.list[32].main.temp_max - 273.15)*1.8 + 32),
+          date: weatherArray.list[32].dt_txt,
+          dayOfWeek: dynamicWeekDayArray[4],
+          humidity: weatherArray.list[32].main.humidity
+        }
       ]
 console.log("modified day array: ", dayObjectsArray)
       this.setState({
@@ -226,22 +269,31 @@ console.log("modified day array: ", dayObjectsArray)
           profilePage={this.profilePage}
           homeSelect={this.homeSelect}
         />
-        <SearchBar
-          handleSubmitOfSearch={this.handleSubmitOfSearch}
-          handleChangeSearchText={this.handleChangeSearchText}
-          searchText={this.state.searchText}
-        />
-        <CityName currentCity={this.state.currentCity}/>
-        <ForecastContainer
-          allDays={this.state.allDays}
-          currentCity={this.state.currentCity}
-          cardView={this.cardView}
-          selectedDay={this.state.selectedDay}
-        />
+        <Switch>
+          <Route path='/home' render={()=>
+            <Home
+              handleSubmitOfSearch={this.handleSubmitOfSearch}
+              handleChangeSearchText={this.handleChangeSearchText}
+              searchText={this.state.searchText}
+            />
+          }/>
+          <SearchBar
+            handleSubmitOfSearch={this.handleSubmitOfSearch}
+            handleChangeSearchText={this.handleChangeSearchText}
+            searchText={this.state.searchText}
+          />
+          <CityName currentCity={this.state.currentCity}/>
+          <ForecastContainer
+            allDays={this.state.allDays}
+            currentCity={this.state.currentCity}
+            cardView={this.cardView}
+            selectedDay={this.state.selectedDay}
+          />
+        </Switch>
       </div>
     );
   }
 
 }
 
-export default App;
+export default withRouter(App)

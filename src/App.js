@@ -8,6 +8,7 @@ import Nav from './components/Nav'
 import { Route, Switch, Link, Redirect} from 'react-router-dom'
 import { withRouter } from 'react-router'
 import Home from './routes/Home'
+import Login from './routes/Login'
 
 class App extends React.Component {
   constructor(){
@@ -239,20 +240,20 @@ console.log("modified day array: ", dayObjectsArray)
     })
   }
 
-  profilePage = () => {
-    console.log("hey dude")
-    fetch(`http://localhost:3001/forecasts`)
-    .then(res => res.json())
-    .then(forecastArray => {
-      this.setState({
-        allDays: [],
-        currentCity: null,
-        searchText: "90210",
-        currentZip: "90210",
-        selectedDay: {},
-      })
-    })
-  }
+  // profilePage = () => {
+  //   console.log("hey dude")
+  //   fetch(`http://localhost:3001/forecasts`)
+  //   .then(res => res.json())
+  //   .then(forecastArray => {
+  //     this.setState({
+  //       allDays: [],
+  //       currentCity: null,
+  //       searchText: "90210",
+  //       currentZip: "90210",
+  //       selectedDay: {},
+  //     })
+  //   })
+  // }
 
   homeSelect = () => {
     console.log("im in here")
@@ -275,20 +276,16 @@ console.log("modified day array: ", dayObjectsArray)
               handleSubmitOfSearch={this.handleSubmitOfSearch}
               handleChangeSearchText={this.handleChangeSearchText}
               searchText={this.state.searchText}
+              currentCity={this.state.currentCity}
+              allDays={this.state.allDays}
+              cardView={this.cardView}
+              selectedDay={this.state.selectedDay}
             />
           }/>
-          <SearchBar
-            handleSubmitOfSearch={this.handleSubmitOfSearch}
-            handleChangeSearchText={this.handleChangeSearchText}
-            searchText={this.state.searchText}
-          />
-          <CityName currentCity={this.state.currentCity}/>
-          <ForecastContainer
-            allDays={this.state.allDays}
-            currentCity={this.state.currentCity}
-            cardView={this.cardView}
-            selectedDay={this.state.selectedDay}
-          />
+          <Route path='/login' render={()=>
+            localStorage.getItem('user') ? <Redirect to='/profile' /> :
+            <Login/>
+          }/>
         </Switch>
       </div>
     );

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default class Nav extends React.Component {
   render(){
@@ -32,12 +33,14 @@ export default class Nav extends React.Component {
             </div>
           </div>
           <div className="item"
-            onClick={(event)=>{this.props.profilePage(event)}}
+            // onClick={(event)=>{this.props.profilePage(event)}}
           >
             <div className="ui vertical animated button blue" tabIndex="0">
+            <Link to='/login'>
               <div className="hidden content">
                 Login
               </div>
+            </Link>
               <div className="visible content">
                 <i className="user icon"></i>
               </div>

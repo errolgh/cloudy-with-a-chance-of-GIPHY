@@ -8,9 +8,20 @@ class Home extends React.Component {
   render(){
     return(
       <React.Fragment>
-        <SearchBar/>
-        <CityName/>
-        <ForecastContainer/>
+        <SearchBar
+          handleSubmitOfSearch={this.props.handleSubmitOfSearch}
+          handleChangeSearchText={this.props.handleChangeSearchText}
+          searchText={this.props.searchText}
+        />
+        <CityName
+          currentCity={this.props.currentCity}
+        />
+        <ForecastContainer
+          allDays={this.props.allDays}
+          currentCity={this.props.currentCity}
+          cardView={this.props.cardView}
+          selectedDay={this.props.selectedDay}
+        />
       </React.Fragment>
     )
   }
